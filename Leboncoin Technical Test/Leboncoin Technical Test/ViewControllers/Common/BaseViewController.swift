@@ -17,7 +17,7 @@ protocol BaseViewControllerProtocol {
     
 }
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, BaseViewControllerProtocol {
 
     //-----------------------------------------------------------------------
     // MARK: - Properties
@@ -43,14 +43,11 @@ class BaseViewController: UIViewController {
             hadFinishFirstLayout = true
         }
     }
-
-}
-
-extension BaseViewController: BaseViewControllerProtocol {
     
     //-----------------------------------------------------------------------
     // MARK: - Protocol stubs
     //-----------------------------------------------------------------------
     func initialize() {}
     func finishInitializeAfterFirstAppear() {}
+
 }

@@ -9,6 +9,8 @@ import UIKit
 
 class DetailViewController: BaseViewController {
 
+    var ad: Ad?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

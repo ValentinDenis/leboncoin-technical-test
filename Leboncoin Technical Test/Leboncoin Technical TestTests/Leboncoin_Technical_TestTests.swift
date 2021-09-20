@@ -6,7 +6,6 @@
 //
 
 import XCTest
-@testable import Leboncoin_Technical_Test
 
 class Leboncoin_Technical_TestTests: XCTestCase {
 

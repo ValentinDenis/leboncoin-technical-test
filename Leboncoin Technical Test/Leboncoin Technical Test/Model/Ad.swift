@@ -8,8 +8,8 @@
 import Foundation
 
 struct Ad: Codable {
-    let id: String
-    let categoryId: String
+    let id: Int
+    let categoryId: Int
     let title: String
     let description: String
     let price: Double
@@ -48,9 +48,12 @@ extension Ad: Comparable {
 
 /// Helpers protocol extension
 extension Ad {
+    /// Returns the creation date as a Date object (for comparison and sorting)
+    /// - Returns: The Date object if it could be formatted
     func creationDateAsDate() -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = Constants.Format.dateFormat
         return formatter.date(from: creationDate)
     }
+    
 }

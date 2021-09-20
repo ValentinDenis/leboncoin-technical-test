@@ -8,6 +8,11 @@
 import Foundation
 
 struct ImageUrl: Codable {
-    let small: String
-    let thumb: String
+    let small: String?
+    let thumb: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case small = "small"
+        case thumb = "thumb"
+    }
 }

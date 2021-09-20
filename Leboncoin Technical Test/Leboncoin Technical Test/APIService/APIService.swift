@@ -36,11 +36,18 @@ struct APIService {
     // MARK: - Functions
     //-----------------------------------------------------------------------
     func execute<T : Codable>(withRequest request: URLRequest, completion: @escaping (Result<T, APIError>) -> Void) {
+        //Log it
+        Logger.log(message: "Request with url: \(request.httpMethod ?? "NO METHOD") \(request.url?.absoluteString ?? "")", logLevel: .request)
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
+            
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
                 completion(.failure(.noStatusCode))
                 return
             }
+            
+            //Log it
+            Logger.log(message: "Response for :\nURL: \(response?.url?.absoluteString ?? "NO URL")\nStatus Code: \(statusCode)", logLevel: .response)
             
             // Check status code
             switch statusCode {
@@ -59,7 +66,8 @@ struct APIService {
             
             // Check Error
             if let error = error {
-                debugPrint("API Call Error: \(error.localizedDescription)")
+                //Log it
+                Logger.log(message: "Error received : \(error.localizedDescription)", logLevel: .error)
                 completion(.failure(.sessionError(error: error)))
                 return
             }
@@ -70,9 +78,11 @@ struct APIService {
                 return
             }
             let decoder = JSONDecoder()
-            if let parsedData = try? decoder.decode(T.self, from: data) {
+            do {
+                let parsedData = try decoder.decode(T.self, from: data)
                 completion(.success(parsedData))
-            }else {
+            } catch {
+                Logger.log(message: "Error parsing : \(error)", logLevel: .error)
                 completion(.failure(.parsingFailed))
             }
         }.resume()
