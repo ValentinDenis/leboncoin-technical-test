@@ -22,6 +22,7 @@ struct Constants {
     struct Identifiers {
         struct Cells {
             static var adCollectionViewCellID = "adCollectionViewCellID"
+            static var categoryTableViewCellID = "categoryTableViewCellID"
         }
     }
     

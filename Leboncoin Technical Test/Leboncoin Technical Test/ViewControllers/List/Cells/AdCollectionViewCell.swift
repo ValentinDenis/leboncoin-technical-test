@@ -11,18 +11,23 @@ class AdCollectionViewCell: UICollectionViewCell {
     //-----------------------------------------------------------------------
     // MARK: - SubViews
     //-----------------------------------------------------------------------
-    private let mainStackView = UIStackView(frame: CGRect.zero)
-    private let titleLabel = UILabel()
-    private let categoryLabel = UILabel()
-    private let descExcerptLabel = UILabel()
-    private let dateLabel = UILabel()
-    private let priceLabel = UILabel()
-    private let urgentLabel = UILabel()
-    private let adImageView = UIImageView()
+    internal let mainStackView = UIStackView(frame: CGRect.zero)
+    internal let titleLabel = UILabel()
+    internal let categoryLabel = UILabel()
+    internal let descExcerptLabel = UILabel()
+    internal let dateLabel = UILabel()
+    internal let priceLabel = UILabel()
+    internal let urgentLabel = UILabel()
+    internal let adImageView = UIImageView()
     
     //-----------------------------------------------------------------------
     // MARK: - Life Cycle
     //-----------------------------------------------------------------------
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        resetCell()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpSubViews()
@@ -35,22 +40,57 @@ class AdCollectionViewCell: UICollectionViewCell {
     //-----------------------------------------------------------------------
     // MARK: - Public Functions
     //-----------------------------------------------------------------------
-    func fill(withAd ad: Ad) {
+    func fill(withAd ad: Ad, forCategory category: Category?) {
+        //Title
         titleLabel.text = ad.title
+        
+        //Price
+        priceLabel.text = ad.priceFormat()
+        
+        //Short description
+        descExcerptLabel.text = ad.description
+        
+        //Category
+        if let cat = category {
+            categoryLabel.text = "Catégorie: \(cat.name)"
+        }else {
+            categoryLabel.isHidden = true
+        }
+        
+        //Date
+        dateLabel.text = ad.dateFormat()
+        
+        //Urgent
+        urgentLabel.isHidden = !ad.isUrgent
+    
+        //Image
+        guard let urlString = ad.imagesUrl.thumb, let url = URL(string: urlString) else {
+            adImageView.image = UIImage(named: "placeholder")
+            return
+        }
+        adImageView.load(url: url)
     }
     
     //-----------------------------------------------------------------------
     // MARK: - Private Functions
     //-----------------------------------------------------------------------
+    private func resetCell() {
+        titleLabel.text = nil
+        categoryLabel.text = nil
+        descExcerptLabel.text = nil
+        dateLabel.text = nil
+        priceLabel.text = nil
+        adImageView.image = nil
+    }
+    
     private func setUpSubViews() {
-        //Test
-        contentView.layer.cornerRadius = 6.0
+        //Corner and shadow
+        contentView.layer.cornerRadius = 8.0
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.masksToBounds = true
-
         layer.shadowColor = UIColor.lightGray.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         layer.shadowRadius = 6.0
         layer.shadowOpacity = 1.0
         layer.masksToBounds = false
@@ -58,19 +98,140 @@ class AdCollectionViewCell: UICollectionViewCell {
         layer.backgroundColor = UIColor.clear.cgColor
         
         
-        //Stack View
+        //Horizontal StackView
         contentView.addSubview(mainStackView)
         mainStackView.addBackground(color: .white)
         mainStackView.alignment = .fill
-        mainStackView.axis = .vertical
+        mainStackView.axis = .horizontal
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
+        //Spacer Left
+        let spacerLeft = UIView()
+        spacerLeft.translatesAutoresizingMaskIntoConstraints = false
+        spacerLeft.widthAnchor.constraint(equalToConstant: 16.0).isActive = true
+        mainStackView.addArrangedSubview(spacerLeft)
+        
+        //Inner Vertical Stack View
+        let innerStackView = UIStackView()
+        innerStackView.translatesAutoresizingMaskIntoConstraints = false
+        innerStackView.alignment = .fill
+        innerStackView.axis = .horizontal
+        mainStackView.addArrangedSubview(innerStackView)
+        
+        //Spacer Right
+        let spacerRight = UIView()
+        spacerRight.translatesAutoresizingMaskIntoConstraints = false
+        spacerRight.widthAnchor.constraint(equalToConstant: 16.0).isActive = true
+        mainStackView.addArrangedSubview(spacerRight)
+        
+        //Image View Stack
+        let imageViewStackView = UIStackView()
+        imageViewStackView.axis = .vertical
+        imageViewStackView.alignment = .fill
+        imageViewStackView.spacing = 8
+        //Image View Stack Top Spacer
+        let topImageSpacer = UIView()
+        topImageSpacer.translatesAutoresizingMaskIntoConstraints = false
+        imageViewStackView.addArrangedSubview(topImageSpacer)
+        //Urgent Label
+        urgentLabel.numberOfLines = 1
+        urgentLabel.text = "Urgente !"
+        urgentLabel.textAlignment = .center
+        urgentLabel.textColor = .red
+        urgentLabel.font = Constants.Font.OpenSans.bold.font(withSize: 14)
+        urgentLabel.translatesAutoresizingMaskIntoConstraints = false
+        urgentLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
+        imageViewStackView.addArrangedSubview(urgentLabel)
+        //ImageView itself
+        adImageView.contentMode = .scaleAspectFill
+        adImageView.translatesAutoresizingMaskIntoConstraints = false
+        adImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        adImageView.heightAnchor.constraint(equalToConstant: 130).isActive = true
+        adImageView.layer.masksToBounds = true
+        adImageView.layer.cornerRadius = 8.0
+        imageViewStackView.addArrangedSubview(adImageView)
+        //Image View Stack Bottom Spacer
+        let bottomImageSpacer = UIView()
+        bottomImageSpacer.translatesAutoresizingMaskIntoConstraints = false
+        imageViewStackView.addArrangedSubview(bottomImageSpacer)
+        //Layout
+        topImageSpacer.heightAnchor.constraint(equalTo: bottomImageSpacer.heightAnchor, multiplier: 1).isActive = true
+        innerStackView.addArrangedSubview(imageViewStackView)
+
+        //Spacer after Image
+        let afterImageSpacer = UIView()
+        afterImageSpacer.translatesAutoresizingMaskIntoConstraints = false
+        afterImageSpacer.widthAnchor.constraint(equalToConstant: 16.0).isActive = true
+        innerStackView.addArrangedSubview(afterImageSpacer)
+        
+        //Infos stack view
+        let infoStackView = UIStackView()
+        infoStackView.axis = .vertical
+        infoStackView.alignment = .fill
+        infoStackView.spacing = 4.0
+        innerStackView.addArrangedSubview(infoStackView)
+        
+        //Top info Spacer
+        let topInfoSpacer = UIView()
+        topInfoSpacer.translatesAutoresizingMaskIntoConstraints = false
+        topInfoSpacer.heightAnchor.constraint(equalToConstant: 12.0).isActive = true
+        infoStackView.addArrangedSubview(topInfoSpacer)
+        
         //Title
-        titleLabel.textColor = .blue
-        mainStackView.addArrangedSubview(titleLabel)
+        titleLabel.numberOfLines = 2
+        titleLabel.font = Constants.Font.OpenSans.semiBold.font(withSize: 13)
+        titleLabel.textColor = Constants.Colors.blackLBC
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        infoStackView.addArrangedSubview(titleLabel)
+        
+        //Price
+        priceLabel.numberOfLines = 1
+        priceLabel.font = Constants.Font.OpenSans.regular.font(withSize: 12)
+        priceLabel.textColor = Constants.Colors.blackLBC
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        infoStackView.addArrangedSubview(priceLabel)
+        
+        //Spacer
+        let infoSpacer = UIView()
+        infoSpacer.translatesAutoresizingMaskIntoConstraints = false
+        infoSpacer.heightAnchor.constraint(equalToConstant: 8.0).isActive = true
+        infoStackView.addArrangedSubview(infoSpacer)
+        
+        //Short Desc
+        descExcerptLabel.numberOfLines = 3
+        descExcerptLabel.font = Constants.Font.OpenSans.regular.font(withSize: 10)
+        descExcerptLabel.textColor = Constants.Colors.blackLBC?.withAlphaComponent(0.8)
+        descExcerptLabel.translatesAutoresizingMaskIntoConstraints = false
+        infoStackView.addArrangedSubview(descExcerptLabel)
+        
+        //Spacer
+        let infoSpacer2 = UIView()
+        infoSpacer2.translatesAutoresizingMaskIntoConstraints = false
+        infoSpacer2.heightAnchor.constraint(equalToConstant: 8.0).isActive = true
+        infoStackView.addArrangedSubview(infoSpacer2)
+        
+        //Category
+        categoryLabel.numberOfLines = 1
+        categoryLabel.font = Constants.Font.OpenSans.italic.font(withSize: 10)
+        categoryLabel.textColor = Constants.Colors.blackLBC
+        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        infoStackView.addArrangedSubview(categoryLabel)
+        
+        //Date
+        dateLabel.numberOfLines = 1
+        dateLabel.font = Constants.Font.OpenSans.italic.font(withSize: 10)
+        dateLabel.textColor = Constants.Colors.blackLBC?.withAlphaComponent(0.5)
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        infoStackView.addArrangedSubview(dateLabel)
+        
+        //Dynamic Height Spacer
+        let dynSpacer = UIView()
+        infoSpacer.translatesAutoresizingMaskIntoConstraints = false
+        infoStackView.addArrangedSubview(dynSpacer)
+        
     }
 }

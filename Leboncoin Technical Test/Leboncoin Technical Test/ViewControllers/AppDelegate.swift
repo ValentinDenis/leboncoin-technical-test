@@ -20,8 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = controller
         window?.makeKeyAndVisible()
         
+        setupAppearance()
+        
         return true
     }
 
+    private func setupAppearance() {
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : Constants.Colors.orangeLBC ?? .black, NSAttributedString.Key.font : Constants.Font.OpenSans.bold.font(withSize: 17)]
+    }
 }
 

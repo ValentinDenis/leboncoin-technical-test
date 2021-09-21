@@ -15,23 +15,22 @@ class ListViewController: BaseViewController {
     private let adCollectionView: UICollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     private let loaderView = UIActivityIndicatorView()
     private let refreshControl = UIRefreshControl()
+    private let searchBar = UISearchBar()
+    
+    //Filter
+    private var filterLabel = UILabel()
+    private var filterButton = UIButton()
+    private var filterBarButton = UIBarButtonItem()
+    private var filterImageView = UIImageView()
     
     //-----------------------------------------------------------------------
     // MARK: - Properties
     //-----------------------------------------------------------------------
-    private var dataSource: [Ad] = [] {
-        didSet {
-            adCollectionView.reloadData()
-        }
-    }
-    
-    private var categories: [Category] = [] {
-        didSet {
-            
-        }
-    }
-    
-    
+    private var dataSource: [Ad] = []
+    private var filteredDataSource: [Ad] = []
+    private var originalFilteredDataSourceBeforeSearch: [Ad] = []
+    private var categories: [Category] = []
+    private var pickedCategory: Category = Category.defaultCategory()
     
     //-----------------------------------------------------------------------
     // MARK: - Life Cycle
@@ -39,18 +38,17 @@ class ListViewController: BaseViewController {
     override func initialize() {
         super.initialize()
         
+        //Title
+        self.title = "Annonces"
+        
+        //Filter
+        setupFilter()
+        
         //Setup the views of the VC
         setUpViews()
         
-        //Fetch the ads for the CV
-        showLoader()
-        fetchAds {[weak self] in
-            guard let self = self else { return }
-            self.hideLoader()
-        }
-        
-        //Fetch the categories for the picker
-        fetchCategories()
+        //Fetch both ads and categories in parallel so we have both ready at the same time (because we need to show the category in each ad cell)
+        fetchData()
         
     }
     
@@ -61,33 +59,72 @@ class ListViewController: BaseViewController {
     //-----------------------------------------------------------------------
     // MARK: - Private Functions
     //-----------------------------------------------------------------------
+    /// Fetch all the needed data
+    @objc private func fetchData() {
+        showLoader()
+        
+        let taskGroup = DispatchGroup()
+        
+        //Fetch the ads
+        taskGroup.enter()
+        fetchAds {[weak self] ads in
+            guard let self = self else { return }
+            if let ads = ads {
+                self.dataSource = ads
+                self.filteredDataSource = ads
+                self.originalFilteredDataSourceBeforeSearch = ads
+            }
+            taskGroup.leave()
+        }
+        
+        //Fetch the categories for the picker
+        taskGroup.enter()
+        fetchCategories {[weak self] cats in
+            guard let self = self else { return }
+            if let cats = cats {
+                self.categories = [Category.defaultCategory()]
+                self.categories.append(contentsOf: cats)
+                self.categories.sort(by: { $0.id < $1.id})
+            }
+            taskGroup.leave()
+        }
+        
+        taskGroup.notify(queue: .main) {[weak self] in
+            guard let self = self else { return }
+            self.hideLoader()
+            self.adCollectionView.reloadData()
+        }
+    }
+    
     /// Fetch the ads from distance
-    @objc private func fetchAds(completion: (() -> Void)?) {
+    private func fetchAds(completion: (([Ad]?) -> Void)?) {
         adCollectionView.refreshControl?.beginRefreshing()
         APIService.fetchAds {[weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let ads):
-                    self.dataSource = ads
+                    completion?(ads)
                 case .failure(let error):
+                    completion?(nil)
                     self.showErrorAlert(withError: error)
                 }
                 self.adCollectionView.refreshControl?.endRefreshing()
-                completion?()
+                
             }
         }
     }
     
     /// Fetch the categories from distance
-    private func fetchCategories() {
+    private func fetchCategories(completion: (([Category]?) -> Void)?) {
         APIService.fetchCategories {[weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .success(let categories):
-                    self.categories = categories
+                    completion?(categories)
                 case .failure(let error):
+                    completion?(nil)
                     self.showErrorAlert(withError: error)
                 }
             }
@@ -108,6 +145,9 @@ class ListViewController: BaseViewController {
     
     /// Setup all the views of the VC
     private func setUpViews() {
+        //Setup the search bar
+        setupSearchBar()
+        
         //Setup the collectionview
         setupCollectionView()
     }
@@ -120,10 +160,10 @@ class ListViewController: BaseViewController {
         //Layout
         view.addSubview(adCollectionView)
         adCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        adCollectionView.topAnchor.constraint(equalTo:view.topAnchor).isActive = true
-        adCollectionView.leftAnchor.constraint(equalTo:view.leftAnchor).isActive = true
-        adCollectionView.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
-        adCollectionView.bottomAnchor.constraint(equalTo:view.bottomAnchor).isActive = true
+        adCollectionView.topAnchor.constraint(equalTo:searchBar.bottomAnchor, constant: 0).isActive = true
+        adCollectionView.leftAnchor.constraint(equalTo:view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        adCollectionView.rightAnchor.constraint(equalTo:view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        adCollectionView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         //Delegates
         adCollectionView.delegate = self
@@ -135,10 +175,11 @@ class ListViewController: BaseViewController {
         //Refresh Control
         adCollectionView.alwaysBounceVertical = true
         refreshControl.tintColor = Constants.Colors.orangeLBC
-        refreshControl.addTarget(self, action: #selector(fetchAds(completion:)), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(fetchData), for: .valueChanged)
         adCollectionView.refreshControl = refreshControl
     }
     
+    /// Setup the loader in the center
     private func setupLoader() {
         view.addSubview(loaderView)
         loaderView.color = Constants.Colors.orangeLBC
@@ -148,6 +189,57 @@ class ListViewController: BaseViewController {
         loaderView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
+    /// Setup a filter custom nav bar button
+    private func setupFilter() {
+        filterButton = UIButton(type: .custom)
+        filterButton.addTarget(self, action: #selector(filterPressed), for: .touchUpInside)
+        
+        filterImageView = UIImageView(frame: CGRect(x: 70, y: 5, width: 20, height: 20))
+        filterImageView.image = UIImage(named: "filter")
+        filterImageView.image = filterImageView.image?.withRenderingMode(.alwaysTemplate)
+        filterImageView.tintColor = Constants.Colors.orangeLBC
+        
+        filterLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 64, height: 30))
+        filterLabel.text = "Toutes"
+        filterLabel.textAlignment = .right
+        filterLabel.font = Constants.Font.OpenSans.semiBold.font(withSize: 14)
+        filterLabel.textColor = Constants.Colors.orangeLBC
+        
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: 90, height: 30))
+        filterButton.frame = customView.frame
+        customView.addSubview(filterButton)
+        customView.addSubview(filterImageView)
+        customView.addSubview(filterLabel)
+        
+        filterBarButton = UIBarButtonItem(customView: customView)
+        self.navigationItem.rightBarButtonItem = filterBarButton
+    }
+    
+    /// Setup the search bar view
+    private func setupSearchBar() {
+        //Layout
+        view.addSubview(searchBar)
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.topAnchor.constraint(equalTo:view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        searchBar.leftAnchor.constraint(equalTo:view.safeAreaLayoutGuide.leftAnchor, constant: 0).isActive = true
+        searchBar.rightAnchor.constraint(equalTo:view.safeAreaLayoutGuide.rightAnchor, constant: 0).isActive = true
+        
+        //Config
+        searchBar.barStyle = .default
+        searchBar.placeholder = "Recherchez une annonce..."
+        searchBar.returnKeyType = .done
+        searchBar.enablesReturnKeyAutomatically = false
+        
+        //Delegates
+        searchBar.delegate = self
+    }
+    
+    /// The nav bar button for filter has been pressed
+    @objc func filterPressed() {
+        Router.navigate(toRoute: .categoryPicker(categories: categories, pickedCategory: pickedCategory, delegate: self), presentationStyle: .modal(embedInNav: true), fromVC: self)
+    }
+    
+    /// Show the loader in the center
     private func showLoader() {
         //Hide the CV and show the loader
         UIView.animate(withDuration: 0.3) {[weak self] in
@@ -157,6 +249,7 @@ class ListViewController: BaseViewController {
         }
     }
     
+    /// Hide the loader in the center
     private func hideLoader() {
         //Hide the loader and show the CV
         UIView.animate(withDuration: 0.3) {[weak self] in
@@ -165,20 +258,40 @@ class ListViewController: BaseViewController {
             self.adCollectionView.alpha = 1.0
         }
     }
+    
+    /// Filter the datasource with the searchtext
+    /// - Parameter searchText: The search text
+    private func filterWithSearch(searchText: String) {
+        if searchText == "" {
+            filteredDataSource = originalFilteredDataSourceBeforeSearch
+        }else {
+            filteredDataSource = originalFilteredDataSourceBeforeSearch.filter { ad in
+                return ad.title.lowercased().contains(searchText.lowercased()) || ad.description.lowercased().contains(searchText.lowercased())
+            }
+        }
+        
+        //Reload
+        adCollectionView.performBatchUpdates {
+            adCollectionView.reloadSections(IndexSet(integer: 0))
+        } completion: { finished in }
+        
+    }
 
 }
 
 /// Extension for CollectionView delegate & datasource
 extension ListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSource.count
+        return filteredDataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.Cells.adCollectionViewCellID, for: indexPath) as? AdCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.fill(withAd: dataSource[indexPath.row])
+        let ad = filteredDataSource[indexPath.row]
+        let category = categories.first(where: { $0.id == ad.categoryId })
+        cell.fill(withAd: ad, forCategory: category)
         return cell
     }
     
@@ -199,4 +312,45 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 32.0
     }
+}
+
+extension ListViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterWithSearch(searchText: searchText)
+    }
+}
+
+/// Extension for Category Picker Delegate
+extension ListViewController: CategoryPickerDelegate {
+    func didPickCategory(category: Category) {
+        //Dismiss the filter view
+        dismiss(animated: true, completion: nil)
+        
+        //Reload after filtering
+        pickedCategory = category
+        if pickedCategory.id == Category.defaultCategory().id {
+            filteredDataSource = Ad.sortAdsByUrgentAndDate(ads: dataSource)
+        }else {
+            filteredDataSource = Ad.sortAdsByUrgentAndDate(ads: dataSource.filter { $0.categoryId == category.id })
+        }
+        originalFilteredDataSourceBeforeSearch = filteredDataSource
+        filterLabel.text = category.name
+        
+        //Reload
+        adCollectionView.performBatchUpdates {
+            adCollectionView.reloadSections(IndexSet(integer: 0))
+        } completion: { finished in }
+    }
+    
+    func didDismissWithoutPicking() {}
+    
+    
 }

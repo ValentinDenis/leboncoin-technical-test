@@ -56,4 +56,42 @@ extension Ad {
         return formatter.date(from: creationDate)
     }
     
+    /// Returns the price formatted
+    /// - Returns: The price formatted
+    func priceFormat() -> String {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        nf.locale = Locale(identifier: "fr")
+        let priceString = nf.string(from: NSNumber(value: price))
+        return "\(priceString ?? "") \(Constants.Format.currency)"
+    }
+    
+    func dateFormat() -> String {
+        guard let creationDateAsDate = creationDateAsDate() else { return "" }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE MMM d yyyy à hh:mm"
+        dateFormatter.locale = Locale(identifier: "fr")
+        let dateString = dateFormatter.string(from: creationDateAsDate)
+        return dateString.capitalized
+    }
+    
+    /// Sorts an array of ad correctly
+    /// - Parameter ads: The ads to sort
+    /// - Returns: The ads sorted
+    static func sortAdsByUrgentAndDate(ads: [Ad]) -> [Ad] {
+        let sortedAds = ads.sorted(by: {
+            if !$1.isUrgent && $0.isUrgent {
+                return true
+            }else if $1.isUrgent && !$0.isUrgent {
+                return false
+            }else {
+                guard let firstDate = $0.creationDateAsDate(), let secondDate = $1.creationDateAsDate() else {
+                    return false
+                }
+                return firstDate > secondDate
+            }
+            }
+        )
+        return sortedAds
+    }
 }

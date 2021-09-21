@@ -20,7 +20,16 @@ extension APIService {
         let request = URLRequest(url: url)
         
         APIService.shared.execute(withRequest: request) { (result: Result<[Ad], APIError>) in
-            completion(result)
+            switch result {
+            case .success(let ads):
+                //Sort the ads by date
+                let sortedAds = Ad.sortAdsByUrgentAndDate(ads: ads)
+                completion(.success(sortedAds))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
+    
+    
 }

@@ -11,6 +11,7 @@ import UIKit
 enum Route {
     case listing
     case detail(ad: Ad)
+    case categoryPicker(categories: [Category], pickedCategory: Category, delegate: CategoryPickerDelegate?)
 }
 
 enum RoutePresentationStyle {
@@ -29,6 +30,11 @@ struct Router {
         case .detail(let ad):
             destinationVC = DetailViewController()
             (destinationVC as? DetailViewController)?.ad = ad
+        case .categoryPicker(let categories, let pickedCategory, let delegate):
+            destinationVC = CategoryPickerViewController()
+            (destinationVC as? CategoryPickerViewController)?.categoryDataSource = categories
+            (destinationVC as? CategoryPickerViewController)?.alreadyPickedCategory = pickedCategory
+            (destinationVC as? CategoryPickerViewController)?.delegate = delegate
         }
         
         guard let destinationVC = destinationVC else { return }

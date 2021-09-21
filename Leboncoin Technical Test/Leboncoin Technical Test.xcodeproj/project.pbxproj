@@ -10,7 +10,6 @@
 		354379E126F8955700089A98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354379E026F8955700089A98 /* AppDelegate.swift */; };
 		354379EA26F8955900089A98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354379E926F8955900089A98 /* Assets.xcassets */; };
 		354379ED26F8955900089A98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354379EB26F8955900089A98 /* LaunchScreen.storyboard */; };
-		354379F826F8955900089A98 /* Leboncoin_Technical_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354379F726F8955900089A98 /* Leboncoin_Technical_TestTests.swift */; };
 		35437A0326F8955900089A98 /* Leboncoin_Technical_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35437A0226F8955900089A98 /* Leboncoin_Technical_TestUITests.swift */; };
 		35437A1826F8999800089A98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354379E026F8955700089A98 /* AppDelegate.swift */; };
 		35437A1C26F8999800089A98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354379EB26F8955900089A98 /* LaunchScreen.storyboard */; };
@@ -18,9 +17,23 @@
 		35437A2626F8999F00089A98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354379E026F8955700089A98 /* AppDelegate.swift */; };
 		35437A2A26F8999F00089A98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354379EB26F8955900089A98 /* LaunchScreen.storyboard */; };
 		35437A2B26F8999F00089A98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354379E926F8955900089A98 /* Assets.xcassets */; };
-		35437A3326F89A6100089A98 /* DEV.plist in Resources */ = {isa = PBXBuildFile; fileRef = 354379EE26F8955900089A98 /* DEV.plist */; };
-		35437A3426F89A6300089A98 /* PROD.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35437A3126F89A5D00089A98 /* PROD.plist */; };
-		35437A3526F89A6600089A98 /* REC.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35437A3226F89A5D00089A98 /* REC.plist */; };
+		359FD68826FA2030006B2414 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD68726FA2030006B2414 /* CategoryPickerViewController.swift */; };
+		359FD68926FA2030006B2414 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD68726FA2030006B2414 /* CategoryPickerViewController.swift */; };
+		359FD68A26FA2030006B2414 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD68726FA2030006B2414 /* CategoryPickerViewController.swift */; };
+		359FD68C26FA2335006B2414 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD68B26FA2335006B2414 /* CategoryTableViewCell.swift */; };
+		359FD68D26FA2335006B2414 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD68B26FA2335006B2414 /* CategoryTableViewCell.swift */; };
+		359FD68E26FA2335006B2414 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD68B26FA2335006B2414 /* CategoryTableViewCell.swift */; };
+		359FD69026FA38A7006B2414 /* AdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD68F26FA38A7006B2414 /* AdTests.swift */; };
+		359FD69126FA3C44006B2414 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA31C426F8DD5B0071CEA4 /* UIImageView+Extensions.swift */; };
+		359FD69226FA3C57006B2414 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA31C026F8D6CC0071CEA4 /* UIStackView+Extensions.swift */; };
+		359FD69426FA412E006B2414 /* AdsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69326FA412E006B2414 /* AdsTests.swift */; };
+		359FD69626FA44B9006B2414 /* CategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69526FA44B9006B2414 /* CategoryTests.swift */; };
+		359FD69826FA4533006B2414 /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69726FA4533006B2414 /* APIServiceTests.swift */; };
+		359FD69A26FA47F9006B2414 /* ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69926FA47F9006B2414 /* ExtensionsTests.swift */; };
+		359FD69C26FA49F3006B2414 /* CategoryTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69B26FA49F3006B2414 /* CategoryTableViewCellTests.swift */; };
+		359FD69E26FA4B4E006B2414 /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69D26FA4B4E006B2414 /* ConfigTests.swift */; };
+		359FD6A026FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69F26FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift */; };
+		359FD6A626FA50B0006B2414 /* AdCollectionViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD6A526FA50B0006B2414 /* AdCollectionViewCellTests.swift */; };
 		35EA314B26F89B5D0071CEA4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA314A26F89B5D0071CEA4 /* BaseViewController.swift */; };
 		35EA314C26F89B5D0071CEA4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA314A26F89B5D0071CEA4 /* BaseViewController.swift */; };
 		35EA314D26F89B5D0071CEA4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA314A26F89B5D0071CEA4 /* BaseViewController.swift */; };
@@ -109,6 +122,9 @@
 		35EA31C126F8D6CC0071CEA4 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA31C026F8D6CC0071CEA4 /* UIStackView+Extensions.swift */; };
 		35EA31C226F8D6CC0071CEA4 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA31C026F8D6CC0071CEA4 /* UIStackView+Extensions.swift */; };
 		35EA31C326F8D6CC0071CEA4 /* UIStackView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA31C026F8D6CC0071CEA4 /* UIStackView+Extensions.swift */; };
+		35EA31C526F8DD5B0071CEA4 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA31C426F8DD5B0071CEA4 /* UIImageView+Extensions.swift */; };
+		35EA31C626F8DD5B0071CEA4 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA31C426F8DD5B0071CEA4 /* UIImageView+Extensions.swift */; };
+		35EA31C726F8DD5B0071CEA4 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA31C426F8DD5B0071CEA4 /* UIImageView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +142,20 @@
 			remoteGlobalIDString = 354379DC26F8955700089A98;
 			remoteInfo = "Leboncoin Technical Test";
 		};
+		359FD6A126FA4FE3006B2414 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 354379D526F8955700089A98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35437A1526F8999800089A98;
+			remoteInfo = REC;
+		};
+		359FD6A326FA5011006B2414 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 354379D526F8955700089A98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 35437A1526F8999800089A98;
+			remoteInfo = REC;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -135,7 +165,6 @@
 		354379EC26F8955900089A98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		354379EE26F8955900089A98 /* DEV.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DEV.plist; sourceTree = "<group>"; };
 		354379F326F8955900089A98 /* Leboncoin Technical TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Leboncoin Technical TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		354379F726F8955900089A98 /* Leboncoin_Technical_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leboncoin_Technical_TestTests.swift; sourceTree = "<group>"; };
 		354379F926F8955900089A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		354379FE26F8955900089A98 /* Leboncoin Technical TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Leboncoin Technical TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35437A0226F8955900089A98 /* Leboncoin_Technical_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leboncoin_Technical_TestUITests.swift; sourceTree = "<group>"; };
@@ -144,6 +173,17 @@
 		35437A3026F8999F00089A98 /* PROD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PROD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35437A3126F89A5D00089A98 /* PROD.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PROD.plist; sourceTree = "<group>"; };
 		35437A3226F89A5D00089A98 /* REC.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = REC.plist; sourceTree = "<group>"; };
+		359FD68726FA2030006B2414 /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
+		359FD68B26FA2335006B2414 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		359FD68F26FA38A7006B2414 /* AdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdTests.swift; sourceTree = "<group>"; };
+		359FD69326FA412E006B2414 /* AdsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsTests.swift; sourceTree = "<group>"; };
+		359FD69526FA44B9006B2414 /* CategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTests.swift; sourceTree = "<group>"; };
+		359FD69726FA4533006B2414 /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		359FD69926FA47F9006B2414 /* ExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsTests.swift; sourceTree = "<group>"; };
+		359FD69B26FA49F3006B2414 /* CategoryTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCellTests.swift; sourceTree = "<group>"; };
+		359FD69D26FA4B4E006B2414 /* ConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
+		359FD69F26FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewControllerTests.swift; sourceTree = "<group>"; };
+		359FD6A526FA50B0006B2414 /* AdCollectionViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCollectionViewCellTests.swift; sourceTree = "<group>"; };
 		35EA314A26F89B5D0071CEA4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		35EA314F26F89D530071CEA4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		35EA315326F89D6F0071CEA4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +210,7 @@
 		35EA319D26F8BAAC0071CEA4 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		35EA31BC26F8C2DA0071CEA4 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		35EA31C026F8D6CC0071CEA4 /* UIStackView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extensions.swift"; sourceTree = "<group>"; };
+		35EA31C426F8DD5B0071CEA4 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,7 +292,15 @@
 		354379F626F8955900089A98 /* Leboncoin Technical TestTests */ = {
 			isa = PBXGroup;
 			children = (
-				354379F726F8955900089A98 /* Leboncoin_Technical_TestTests.swift */,
+				359FD68F26FA38A7006B2414 /* AdTests.swift */,
+				359FD69326FA412E006B2414 /* AdsTests.swift */,
+				359FD69526FA44B9006B2414 /* CategoryTests.swift */,
+				359FD69726FA4533006B2414 /* APIServiceTests.swift */,
+				359FD69926FA47F9006B2414 /* ExtensionsTests.swift */,
+				359FD69B26FA49F3006B2414 /* CategoryTableViewCellTests.swift */,
+				359FD6A526FA50B0006B2414 /* AdCollectionViewCellTests.swift */,
+				359FD69D26FA4B4E006B2414 /* ConfigTests.swift */,
+				359FD69F26FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift */,
 				354379F926F8955900089A98 /* Info.plist */,
 			);
 			path = "Leboncoin Technical TestTests";
@@ -329,6 +378,7 @@
 			children = (
 				35EA318D26F8AE480071CEA4 /* Cells */,
 				35EA315326F89D6F0071CEA4 /* ListViewController.swift */,
+				359FD68726FA2030006B2414 /* CategoryPickerViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -353,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				35EA31C026F8D6CC0071CEA4 /* UIStackView+Extensions.swift */,
+				35EA31C426F8DD5B0071CEA4 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -405,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				35EA318E26F8AE5F0071CEA4 /* AdCollectionViewCell.swift */,
+				359FD68B26FA2335006B2414 /* CategoryTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -458,6 +510,7 @@
 			);
 			dependencies = (
 				354379F526F8955900089A98 /* PBXTargetDependency */,
+				359FD6A226FA4FE3006B2414 /* PBXTargetDependency */,
 			);
 			name = "Leboncoin Technical TestTests";
 			productName = "Leboncoin Technical TestTests";
@@ -476,6 +529,7 @@
 			);
 			dependencies = (
 				35437A0026F8955900089A98 /* PBXTargetDependency */,
+				359FD6A426FA5011006B2414 /* PBXTargetDependency */,
 			);
 			name = "Leboncoin Technical TestUITests";
 			productName = "Leboncoin Technical TestUITests";
@@ -574,7 +628,6 @@
 				35EA31A726F8BAAD0071CEA4 /* OpenSans-SemiBold.ttf in Resources */,
 				35EA31A426F8BAAC0071CEA4 /* OpenSans-LightItalic.ttf in Resources */,
 				35EA319E26F8BAAC0071CEA4 /* OpenSans-BoldItalic.ttf in Resources */,
-				35437A3326F89A6100089A98 /* DEV.plist in Resources */,
 				35EA31AA26F8BAAD0071CEA4 /* OpenSans-Regular.ttf in Resources */,
 				35EA31B326F8BAAD0071CEA4 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				35EA31A126F8BAAC0071CEA4 /* OpenSans-ExtraBold.ttf in Resources */,
@@ -603,7 +656,6 @@
 				35EA31AE26F8BAAD0071CEA4 /* OpenSans-SemiBoldItalic.ttf in Resources */,
 				35437A1C26F8999800089A98 /* LaunchScreen.storyboard in Resources */,
 				35EA31B726F8BAAD0071CEA4 /* OpenSans-Bold.ttf in Resources */,
-				35437A3526F89A6600089A98 /* REC.plist in Resources */,
 				35EA31B126F8BAAD0071CEA4 /* OpenSans-Italic.ttf in Resources */,
 				35EA31A826F8BAAD0071CEA4 /* OpenSans-SemiBold.ttf in Resources */,
 				35EA31A526F8BAAC0071CEA4 /* OpenSans-LightItalic.ttf in Resources */,
@@ -623,7 +675,6 @@
 				35EA31AF26F8BAAD0071CEA4 /* OpenSans-SemiBoldItalic.ttf in Resources */,
 				35437A2A26F8999F00089A98 /* LaunchScreen.storyboard in Resources */,
 				35EA31B826F8BAAD0071CEA4 /* OpenSans-Bold.ttf in Resources */,
-				35437A3426F89A6300089A98 /* PROD.plist in Resources */,
 				35EA31B226F8BAAD0071CEA4 /* OpenSans-Italic.ttf in Resources */,
 				35EA31A926F8BAAD0071CEA4 /* OpenSans-SemiBold.ttf in Resources */,
 				35EA31A626F8BAAC0071CEA4 /* OpenSans-LightItalic.ttf in Resources */,
@@ -646,6 +697,7 @@
 				354379E126F8955700089A98 /* AppDelegate.swift in Sources */,
 				35EA318326F8A7BD0071CEA4 /* APIService+Categories.swift in Sources */,
 				35EA315C26F89DD20071CEA4 /* Ad.swift in Sources */,
+				359FD68826FA2030006B2414 /* CategoryPickerViewController.swift in Sources */,
 				35EA314B26F89B5D0071CEA4 /* BaseViewController.swift in Sources */,
 				35EA315826F89D760071CEA4 /* DetailViewController.swift in Sources */,
 				35EA317D26F8A21F0071CEA4 /* APIService+Listing.swift in Sources */,
@@ -654,7 +706,9 @@
 				35EA31BD26F8C2DA0071CEA4 /* Router.swift in Sources */,
 				35EA316626F89E460071CEA4 /* ImageUrl.swift in Sources */,
 				35EA316C26F89FA50071CEA4 /* Config.swift in Sources */,
+				35EA31C526F8DD5B0071CEA4 /* UIImageView+Extensions.swift in Sources */,
 				35EA315026F89D530071CEA4 /* LaunchViewController.swift in Sources */,
+				359FD68C26FA2335006B2414 /* CategoryTableViewCell.swift in Sources */,
 				35EA318926F8A8F70071CEA4 /* Logger.swift in Sources */,
 				35EA318F26F8AE5F0071CEA4 /* AdCollectionViewCell.swift in Sources */,
 				35EA317626F8A1CF0071CEA4 /* APIService.swift in Sources */,
@@ -666,16 +720,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				359FD69E26FA4B4E006B2414 /* ConfigTests.swift in Sources */,
+				359FD69C26FA49F3006B2414 /* CategoryTableViewCellTests.swift in Sources */,
+				359FD6A626FA50B0006B2414 /* AdCollectionViewCellTests.swift in Sources */,
+				359FD69026FA38A7006B2414 /* AdTests.swift in Sources */,
 				35EA315F26F89DD20071CEA4 /* Ad.swift in Sources */,
+				359FD69226FA3C57006B2414 /* UIStackView+Extensions.swift in Sources */,
 				35EA317926F8A1CF0071CEA4 /* APIService.swift in Sources */,
-				354379F826F8955900089A98 /* Leboncoin_Technical_TestTests.swift in Sources */,
 				35EA319226F8AE5F0071CEA4 /* AdCollectionViewCell.swift in Sources */,
 				35EA318026F8A21F0071CEA4 /* APIService+Listing.swift in Sources */,
 				35EA316F26F89FA50071CEA4 /* Config.swift in Sources */,
+				359FD69126FA3C44006B2414 /* UIImageView+Extensions.swift in Sources */,
 				35EA318C26F8A8F70071CEA4 /* Logger.swift in Sources */,
+				359FD69626FA44B9006B2414 /* CategoryTests.swift in Sources */,
+				359FD6A026FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift in Sources */,
 				35EA316426F89DE30071CEA4 /* Category.swift in Sources */,
+				359FD69A26FA47F9006B2414 /* ExtensionsTests.swift in Sources */,
 				35EA316926F89E460071CEA4 /* ImageUrl.swift in Sources */,
 				35EA318626F8A7BE0071CEA4 /* APIService+Categories.swift in Sources */,
+				359FD69426FA412E006B2414 /* AdsTests.swift in Sources */,
+				359FD69826FA4533006B2414 /* APIServiceTests.swift in Sources */,
 				35EA317426F89FAC0071CEA4 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -696,6 +760,7 @@
 				35437A1826F8999800089A98 /* AppDelegate.swift in Sources */,
 				35EA318426F8A7BD0071CEA4 /* APIService+Categories.swift in Sources */,
 				35EA315D26F89DD20071CEA4 /* Ad.swift in Sources */,
+				359FD68926FA2030006B2414 /* CategoryPickerViewController.swift in Sources */,
 				35EA314C26F89B5D0071CEA4 /* BaseViewController.swift in Sources */,
 				35EA315926F89D760071CEA4 /* DetailViewController.swift in Sources */,
 				35EA317E26F8A21F0071CEA4 /* APIService+Listing.swift in Sources */,
@@ -704,7 +769,9 @@
 				35EA31BE26F8C2DA0071CEA4 /* Router.swift in Sources */,
 				35EA316726F89E460071CEA4 /* ImageUrl.swift in Sources */,
 				35EA316D26F89FA50071CEA4 /* Config.swift in Sources */,
+				35EA31C626F8DD5B0071CEA4 /* UIImageView+Extensions.swift in Sources */,
 				35EA315126F89D530071CEA4 /* LaunchViewController.swift in Sources */,
+				359FD68D26FA2335006B2414 /* CategoryTableViewCell.swift in Sources */,
 				35EA318A26F8A8F70071CEA4 /* Logger.swift in Sources */,
 				35EA319026F8AE5F0071CEA4 /* AdCollectionViewCell.swift in Sources */,
 				35EA317726F8A1CF0071CEA4 /* APIService.swift in Sources */,
@@ -720,6 +787,7 @@
 				35437A2626F8999F00089A98 /* AppDelegate.swift in Sources */,
 				35EA318526F8A7BE0071CEA4 /* APIService+Categories.swift in Sources */,
 				35EA315E26F89DD20071CEA4 /* Ad.swift in Sources */,
+				359FD68A26FA2030006B2414 /* CategoryPickerViewController.swift in Sources */,
 				35EA314D26F89B5D0071CEA4 /* BaseViewController.swift in Sources */,
 				35EA315A26F89D760071CEA4 /* DetailViewController.swift in Sources */,
 				35EA317F26F8A21F0071CEA4 /* APIService+Listing.swift in Sources */,
@@ -728,7 +796,9 @@
 				35EA31BF26F8C2DA0071CEA4 /* Router.swift in Sources */,
 				35EA316826F89E460071CEA4 /* ImageUrl.swift in Sources */,
 				35EA316E26F89FA50071CEA4 /* Config.swift in Sources */,
+				35EA31C726F8DD5B0071CEA4 /* UIImageView+Extensions.swift in Sources */,
 				35EA315226F89D530071CEA4 /* LaunchViewController.swift in Sources */,
+				359FD68E26FA2335006B2414 /* CategoryTableViewCell.swift in Sources */,
 				35EA318B26F8A8F70071CEA4 /* Logger.swift in Sources */,
 				35EA319126F8AE5F0071CEA4 /* AdCollectionViewCell.swift in Sources */,
 				35EA317826F8A1CF0071CEA4 /* APIService.swift in Sources */,
@@ -748,6 +818,16 @@
 			isa = PBXTargetDependency;
 			target = 354379DC26F8955700089A98 /* DEV */;
 			targetProxy = 354379FF26F8955900089A98 /* PBXContainerItemProxy */;
+		};
+		359FD6A226FA4FE3006B2414 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35437A1526F8999800089A98 /* REC */;
+			targetProxy = 359FD6A126FA4FE3006B2414 /* PBXContainerItemProxy */;
+		};
+		359FD6A426FA5011006B2414 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 35437A1526F8999800089A98 /* REC */;
+			targetProxy = 359FD6A326FA5011006B2414 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -937,7 +1017,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Leboncoin Technical Test.app/Leboncoin Technical Test";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DEV.app/DEV";
 			};
 			name = Debug;
 		};
@@ -959,7 +1039,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Leboncoin Technical Test.app/Leboncoin Technical Test";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DEV.app/DEV";
 			};
 			name = Release;
 		};
@@ -977,9 +1057,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.valentindenis.Leboncoin-Technical-TestUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Leboncoin Technical Test";
+				TEST_TARGET_NAME = DEV;
 			};
 			name = Debug;
 		};
@@ -997,9 +1078,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.valentindenis.Leboncoin-Technical-TestUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Leboncoin Technical Test";
+				TEST_TARGET_NAME = DEV;
 			};
 			name = Release;
 		};
