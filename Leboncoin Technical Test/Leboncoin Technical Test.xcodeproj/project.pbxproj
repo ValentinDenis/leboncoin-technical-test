@@ -10,7 +10,6 @@
 		354379E126F8955700089A98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354379E026F8955700089A98 /* AppDelegate.swift */; };
 		354379EA26F8955900089A98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354379E926F8955900089A98 /* Assets.xcassets */; };
 		354379ED26F8955900089A98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354379EB26F8955900089A98 /* LaunchScreen.storyboard */; };
-		35437A0326F8955900089A98 /* Leboncoin_Technical_TestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35437A0226F8955900089A98 /* Leboncoin_Technical_TestUITests.swift */; };
 		35437A1826F8999800089A98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354379E026F8955700089A98 /* AppDelegate.swift */; };
 		35437A1C26F8999800089A98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354379EB26F8955900089A98 /* LaunchScreen.storyboard */; };
 		35437A1D26F8999800089A98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354379E926F8955900089A98 /* Assets.xcassets */; };
@@ -34,6 +33,9 @@
 		359FD69E26FA4B4E006B2414 /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69D26FA4B4E006B2414 /* ConfigTests.swift */; };
 		359FD6A026FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69F26FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift */; };
 		359FD6A626FA50B0006B2414 /* AdCollectionViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD6A526FA50B0006B2414 /* AdCollectionViewCellTests.swift */; };
+		35B6DBD926FA7F1900DAFBD5 /* LaunchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6DBD826FA7F1900DAFBD5 /* LaunchUITests.swift */; };
+		35B6DBDC26FA828000DAFBD5 /* UITestsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6DBDB26FA828000DAFBD5 /* UITestsExtensions.swift */; };
+		35B6DBDE26FA84FF00DAFBD5 /* ListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6DBDD26FA84FF00DAFBD5 /* ListUITests.swift */; };
 		35EA314B26F89B5D0071CEA4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA314A26F89B5D0071CEA4 /* BaseViewController.swift */; };
 		35EA314C26F89B5D0071CEA4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA314A26F89B5D0071CEA4 /* BaseViewController.swift */; };
 		35EA314D26F89B5D0071CEA4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA314A26F89B5D0071CEA4 /* BaseViewController.swift */; };
@@ -167,7 +169,6 @@
 		354379F326F8955900089A98 /* Leboncoin Technical TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Leboncoin Technical TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		354379F926F8955900089A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		354379FE26F8955900089A98 /* Leboncoin Technical TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Leboncoin Technical TestUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		35437A0226F8955900089A98 /* Leboncoin_Technical_TestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leboncoin_Technical_TestUITests.swift; sourceTree = "<group>"; };
 		35437A0426F8955900089A98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35437A2226F8999800089A98 /* REC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35437A3026F8999F00089A98 /* PROD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PROD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +185,9 @@
 		359FD69D26FA4B4E006B2414 /* ConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
 		359FD69F26FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewControllerTests.swift; sourceTree = "<group>"; };
 		359FD6A526FA50B0006B2414 /* AdCollectionViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCollectionViewCellTests.swift; sourceTree = "<group>"; };
+		35B6DBD826FA7F1900DAFBD5 /* LaunchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchUITests.swift; sourceTree = "<group>"; };
+		35B6DBDB26FA828000DAFBD5 /* UITestsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsExtensions.swift; sourceTree = "<group>"; };
+		35B6DBDD26FA84FF00DAFBD5 /* ListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUITests.swift; sourceTree = "<group>"; };
 		35EA314A26F89B5D0071CEA4 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		35EA314F26F89D530071CEA4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		35EA315326F89D6F0071CEA4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -309,7 +313,9 @@
 		35437A0126F8955900089A98 /* Leboncoin Technical TestUITests */ = {
 			isa = PBXGroup;
 			children = (
-				35437A0226F8955900089A98 /* Leboncoin_Technical_TestUITests.swift */,
+				35B6DBDA26FA826C00DAFBD5 /* Extensions */,
+				35B6DBD826FA7F1900DAFBD5 /* LaunchUITests.swift */,
+				35B6DBDD26FA84FF00DAFBD5 /* ListUITests.swift */,
 				35437A0426F8955900089A98 /* Info.plist */,
 			);
 			path = "Leboncoin Technical TestUITests";
@@ -362,6 +368,14 @@
 				35437A3126F89A5D00089A98 /* PROD.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		35B6DBDA26FA826C00DAFBD5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				35B6DBDB26FA828000DAFBD5 /* UITestsExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		35EA314626F89AC30071CEA4 /* Launch */ = {
@@ -748,7 +762,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35437A0326F8955900089A98 /* Leboncoin_Technical_TestUITests.swift in Sources */,
+				35B6DBDE26FA84FF00DAFBD5 /* ListUITests.swift in Sources */,
+				35B6DBD926FA7F1900DAFBD5 /* LaunchUITests.swift in Sources */,
+				35B6DBDC26FA828000DAFBD5 /* UITestsExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

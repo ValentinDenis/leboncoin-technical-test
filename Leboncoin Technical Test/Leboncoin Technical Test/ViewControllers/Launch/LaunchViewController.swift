@@ -30,6 +30,9 @@ class LaunchViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        //For tests
+        view.accessibilityIdentifier = "LaunchView"
+        
         //Simulate fake initial loading (for now, maybe later wait for things to get in cache or initialize SDKs and stuff)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             Router.navigate(toRoute: .listing, presentationStyle: .replacingRoot(embedInNav: true), fromVC: self)

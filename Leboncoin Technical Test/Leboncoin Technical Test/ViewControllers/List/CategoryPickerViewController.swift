@@ -32,6 +32,9 @@ class CategoryPickerViewController: BaseViewController {
     override func initialize() {
         super.initialize()
         
+        //For tests
+        view.accessibilityIdentifier = "CategoryPickerView"
+        
         //Title
         self.title = "Filtres"
         

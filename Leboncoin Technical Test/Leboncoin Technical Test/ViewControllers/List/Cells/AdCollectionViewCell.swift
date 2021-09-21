@@ -30,6 +30,7 @@ class AdCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.isAccessibilityElement = true
         setUpSubViews()
     }
     
@@ -64,7 +65,7 @@ class AdCollectionViewCell: UICollectionViewCell {
         urgentLabel.isHidden = !ad.isUrgent
     
         //Image
-        guard let urlString = ad.imagesUrl.thumb, let url = URL(string: urlString) else {
+        guard let urlString = ad.imagesUrl.small, let url = URL(string: urlString) else {
             adImageView.image = UIImage(named: "placeholder")
             return
         }
@@ -132,7 +133,7 @@ class AdCollectionViewCell: UICollectionViewCell {
         let imageViewStackView = UIStackView()
         imageViewStackView.axis = .vertical
         imageViewStackView.alignment = .fill
-        imageViewStackView.spacing = 8
+        imageViewStackView.spacing = 16
         //Image View Stack Top Spacer
         let topImageSpacer = UIView()
         topImageSpacer.translatesAutoresizingMaskIntoConstraints = false
@@ -174,6 +175,10 @@ class AdCollectionViewCell: UICollectionViewCell {
         infoStackView.alignment = .fill
         infoStackView.spacing = 4.0
         innerStackView.addArrangedSubview(infoStackView)
+        
+        //Top filler
+        let topFiller = UIView()
+        infoStackView.addArrangedSubview(topFiller)
         
         //Top info Spacer
         let topInfoSpacer = UIView()
@@ -232,6 +237,7 @@ class AdCollectionViewCell: UICollectionViewCell {
         let dynSpacer = UIView()
         infoSpacer.translatesAutoresizingMaskIntoConstraints = false
         infoStackView.addArrangedSubview(dynSpacer)
+        topFiller.heightAnchor.constraint(equalTo: dynSpacer.heightAnchor, multiplier: 1.0).isActive = true
         
     }
 }

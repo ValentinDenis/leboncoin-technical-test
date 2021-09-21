@@ -10,7 +10,7 @@ import UIKit
 
 enum Route {
     case listing
-    case detail(ad: Ad)
+    case detail(ad: Ad, category: Category)
     case categoryPicker(categories: [Category], pickedCategory: Category, delegate: CategoryPickerDelegate?)
 }
 
@@ -27,9 +27,10 @@ struct Router {
         switch route {
         case .listing:
             destinationVC = ListViewController()
-        case .detail(let ad):
+        case .detail(let ad, let category):
             destinationVC = DetailViewController()
             (destinationVC as? DetailViewController)?.ad = ad
+            (destinationVC as? DetailViewController)?.category = category
         case .categoryPicker(let categories, let pickedCategory, let delegate):
             destinationVC = CategoryPickerViewController()
             (destinationVC as? CategoryPickerViewController)?.categoryDataSource = categories

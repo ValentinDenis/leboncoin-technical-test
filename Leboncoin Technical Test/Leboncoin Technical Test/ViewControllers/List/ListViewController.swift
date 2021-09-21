@@ -20,7 +20,6 @@ class ListViewController: BaseViewController {
     //Filter
     private var filterLabel = UILabel()
     private var filterButton = UIButton()
-    private var filterBarButton = UIBarButtonItem()
     private var filterImageView = UIImageView()
     
     //-----------------------------------------------------------------------
@@ -32,11 +31,34 @@ class ListViewController: BaseViewController {
     private var categories: [Category] = []
     private var pickedCategory: Category = Category.defaultCategory()
     
+    lazy var compactLayout: UICollectionViewFlowLayout = {
+        //Cell Size
+        let layout = UICollectionViewFlowLayout()
+        let width = UIScreen.main.bounds.size.width - 36
+        let height = width * 9 / 16
+        layout.itemSize = CGSize(width: width, height: height)
+        
+        return layout
+      }()
+
+    lazy var regLayout: UICollectionViewFlowLayout = {
+        //Cell Size
+        let layout = UICollectionViewFlowLayout()
+        let width = 480.0
+        let height = 230.0
+        layout.itemSize = CGSize(width: width, height: height)
+
+        return layout
+      }()
+    
     //-----------------------------------------------------------------------
     // MARK: - Life Cycle
     //-----------------------------------------------------------------------
     override func initialize() {
         super.initialize()
+        
+        //For tests
+        view.accessibilityIdentifier = "ListView"
         
         //Title
         self.title = "Annonces"
@@ -47,6 +69,9 @@ class ListViewController: BaseViewController {
         //Setup the views of the VC
         setUpViews()
         
+        //Configure the layout for the correct size (handle iPad)
+        configureLayoutForSize()
+        
         //Fetch both ads and categories in parallel so we have both ready at the same time (because we need to show the category in each ad cell)
         fetchData()
         
@@ -54,6 +79,11 @@ class ListViewController: BaseViewController {
     
     override func finishInitializeAfterFirstAppear() {
         super.finishInitializeAfterFirstAppear()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.configureLayoutForSize()
+        self.adCollectionView.reloadData()
     }
     
     //-----------------------------------------------------------------------
@@ -191,6 +221,12 @@ class ListViewController: BaseViewController {
     
     /// Setup a filter custom nav bar button
     private func setupFilter() {
+        filterLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 64, height: 30))
+        filterLabel.text = "Toutes"
+        filterLabel.textAlignment = .right
+        filterLabel.font = Constants.Font.OpenSans.semiBold.font(withSize: 14)
+        filterLabel.textColor = Constants.Colors.orangeLBC
+        
         filterButton = UIButton(type: .custom)
         filterButton.addTarget(self, action: #selector(filterPressed), for: .touchUpInside)
         
@@ -199,20 +235,14 @@ class ListViewController: BaseViewController {
         filterImageView.image = filterImageView.image?.withRenderingMode(.alwaysTemplate)
         filterImageView.tintColor = Constants.Colors.orangeLBC
         
-        filterLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 64, height: 30))
-        filterLabel.text = "Toutes"
-        filterLabel.textAlignment = .right
-        filterLabel.font = Constants.Font.OpenSans.semiBold.font(withSize: 14)
-        filterLabel.textColor = Constants.Colors.orangeLBC
-        
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: 90, height: 30))
         filterButton.frame = customView.frame
         customView.addSubview(filterButton)
         customView.addSubview(filterImageView)
         customView.addSubview(filterLabel)
         
-        filterBarButton = UIBarButtonItem(customView: customView)
-        self.navigationItem.rightBarButtonItem = filterBarButton
+        let rightBarButton = UIBarButtonItem(customView: customView)
+        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     /// Setup the search bar view
@@ -295,15 +325,18 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let ad = filteredDataSource[indexPath.row]
+        guard let category = categories.first(where: { $0.id == ad.categoryId }) else { return }
+        
+        Router.navigate(toRoute: .detail(ad: ad, category: category), presentationStyle: .push, fromVC: self)
+        
+    }
+    
 }
 
 /// Extension for CollectionView Layout
 extension ListViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = UIScreen.main.bounds.size.width - 36
-        let height = width * 9 / 16
-        return CGSize(width: width, height: height)
-    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 32, left: 16, bottom: 32, right: 16)
@@ -312,6 +345,18 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 32.0
     }
+    
+    func configureLayoutForSize() {
+        switch self.traitCollection.horizontalSizeClass{
+        case .regular:
+            self.adCollectionView.setCollectionViewLayout(self.regLayout, animated: false)
+        case .compact, .unspecified:
+            self.adCollectionView.setCollectionViewLayout(self.compactLayout, animated: false)
+        @unknown default:
+            self.adCollectionView.setCollectionViewLayout(self.compactLayout, animated: false)
+        }
+    }
+   
 }
 
 extension ListViewController: UISearchBarDelegate {

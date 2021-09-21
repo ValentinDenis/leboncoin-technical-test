@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupAppearance() {
+        UINavigationBar.appearance().tintColor = Constants.Colors.orangeLBC
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : Constants.Colors.orangeLBC ?? .black, NSAttributedString.Key.font : Constants.Font.OpenSans.bold.font(withSize: 17)]
     }
 }
