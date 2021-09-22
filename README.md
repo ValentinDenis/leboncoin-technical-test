@@ -42,6 +42,13 @@ To build the project, first change the team of the targets (DEV, REC, PROD and t
 The app is compatible with simulators (iPads and iPhones). 
 Use the "DEV" target as it is the only one correctly configured, and that logs things in the console
 
+## Axis of optimization
+
+- Implement some paging server-side for ads
+- Add more UITest
+- Add caching for images
+- Add a "Favorite Ads" feature
+
 ## Meta
 
 Valentin Denis – valentindenis80@gmail.com
