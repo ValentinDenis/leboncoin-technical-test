@@ -30,7 +30,6 @@ class ZoomViewController: BaseViewController {
         
         //Setup the subviews
         setupSubViews()
-        
     }
 
     //-----------------------------------------------------------------------

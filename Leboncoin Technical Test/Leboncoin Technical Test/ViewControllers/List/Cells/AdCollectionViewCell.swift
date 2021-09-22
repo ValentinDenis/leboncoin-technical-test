@@ -41,6 +41,10 @@ class AdCollectionViewCell: UICollectionViewCell {
     //-----------------------------------------------------------------------
     // MARK: - Public Functions
     //-----------------------------------------------------------------------
+    /// Fill the cell with an ad and the corresponding category
+    /// - Parameters:
+    ///   - ad: The ad to display in the cell
+    ///   - category: The category used for the category label
     func fill(withAd ad: Ad, forCategory category: Category?) {
         //Title
         titleLabel.text = ad.title
@@ -65,6 +69,7 @@ class AdCollectionViewCell: UICollectionViewCell {
         urgentLabel.isHidden = !ad.isUrgent
     
         //Image
+        //The "small" image seems to be smaller than the "thumb" image, so we use the "small" here, and "thumb" on detail page
         guard let urlString = ad.imagesUrl.small, let url = URL(string: urlString) else {
             adImageView.image = UIImage(named: "placeholder")
             return

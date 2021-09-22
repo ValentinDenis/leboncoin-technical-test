@@ -13,6 +13,7 @@ enum Environment {
 
 class Config: NSObject {
     
+    /// The environment, set in the PLIST
     static var environment: Environment {
         guard
             let env = Bundle.main.infoDictionary!["Environment"] as? String else {

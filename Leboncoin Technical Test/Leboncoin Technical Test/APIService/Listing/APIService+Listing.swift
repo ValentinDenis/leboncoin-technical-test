@@ -11,6 +11,8 @@ extension APIService {
     //-----------------------------------------------------------------------
     // MARK: - Listing
     //-----------------------------------------------------------------------
+    /// Fetch the ads from the API
+    /// - Parameter completion: The completion closure with the ads or the error
     static func fetchAds(completion: @escaping (Result<[Ad], APIError>) -> Void) {
         guard let url = URL(string: Constants.API.baseUrl + APIEndPoint.listing.rawValue) else {
             completion(.failure(.failedCreatingUrl))

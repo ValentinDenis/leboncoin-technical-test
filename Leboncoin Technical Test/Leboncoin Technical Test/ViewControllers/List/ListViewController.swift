@@ -288,6 +288,7 @@ class ListViewController: BaseViewController {
         searchBar.alpha = 0.0
     }
     
+    /// Setup the count label
     private func setupCount() {
         //Layout
         view.addSubview(countLabel)
@@ -409,6 +410,7 @@ extension ListViewController: UICollectionViewDelegateFlowLayout {
    
 }
 
+/// Extension for the search bar delegate
 extension ListViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()

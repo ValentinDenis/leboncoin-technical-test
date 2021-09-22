@@ -287,7 +287,6 @@
 			children = (
 				35EA318726F8A8E60071CEA4 /* Utils */,
 				35EA316A26F89F980071CEA4 /* Constants */,
-				35437A1126F8992300089A98 /* Contexts */,
 				35437A1226F8992800089A98 /* ViewControllers */,
 				35437A1326F8992E00089A98 /* Model */,
 				35437A1026F8991E00089A98 /* APIService */,
@@ -333,13 +332,6 @@
 				35EA317526F8A1CF0071CEA4 /* APIService.swift */,
 			);
 			path = APIService;
-			sourceTree = "<group>";
-		};
-		35437A1126F8992300089A98 /* Contexts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Contexts;
 			sourceTree = "<group>";
 		};
 		35437A1226F8992800089A98 /* ViewControllers */ = {

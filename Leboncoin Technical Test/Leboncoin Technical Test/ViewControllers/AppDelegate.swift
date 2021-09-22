@@ -20,11 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = controller
         window?.makeKeyAndVisible()
         
+        // Set some appearance for the app
         setupAppearance()
         
         return true
     }
-
+    
+    /// Setup some global appearance for the app
     private func setupAppearance() {
         UINavigationBar.appearance().tintColor = Constants.Colors.orangeLBC
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : Constants.Colors.orangeLBC ?? .black, NSAttributedString.Key.font : Constants.Font.OpenSans.bold.font(withSize: 17)]

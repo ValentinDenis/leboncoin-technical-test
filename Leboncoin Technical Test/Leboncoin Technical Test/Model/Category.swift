@@ -14,6 +14,8 @@ struct Category: Codable {
 
 ///Helpers for Category
 extension Category {
+    /// Returns the default category, present all the time
+    /// - Returns: The default category
     static func defaultCategory() -> Category {
         return Category(id: -1, name: "Toutes")
     }

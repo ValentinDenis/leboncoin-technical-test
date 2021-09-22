@@ -36,6 +36,10 @@ class CategoryTableViewCell: UITableViewCell {
     //-----------------------------------------------------------------------
     // MARK: - Public Functions
     //-----------------------------------------------------------------------
+    /// Fill the cell with a category and the selected status
+    /// - Parameters:
+    ///   - category: The category
+    ///   - selected: The selected status
     func fill(withCategory category: Category, selected: Bool) {
         nameLabel.text = category.name
         selectedImageView.isHidden = !selected

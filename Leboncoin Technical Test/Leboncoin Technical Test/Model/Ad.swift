@@ -66,6 +66,8 @@ extension Ad {
         return "\(priceString ?? "") \(Constants.Format.currency)"
     }
     
+    /// Returns the date formatted as String
+    /// - Returns: The string formatted date
     func dateFormat() -> String {
         guard let creationDateAsDate = creationDateAsDate() else { return "" }
         let dateFormatter = DateFormatter()

@@ -50,6 +50,7 @@ class CategoryPickerViewController: BaseViewController {
     //-----------------------------------------------------------------------
     // MARK: - Private Functions
     //-----------------------------------------------------------------------
+    /// Setup the category filter table view
     private func setupFilterTableView() {
         view.backgroundColor = .white
         tableView.backgroundColor = .white
@@ -74,6 +75,7 @@ class CategoryPickerViewController: BaseViewController {
     }
 }
 
+/// Extension for table view delegate and datasource methods
 extension CategoryPickerViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -22,6 +22,11 @@ enum RoutePresentationStyle {
 }
 
 struct Router {
+    /// Used to navigate to different part of the application, and handle navigation stack if necessary
+    /// - Parameters:
+    ///   - route: The route to display
+    ///   - presentationStyle: The presentation style for displaying the route
+    ///   - fromVC: The VC calling this methond
     static func navigate(toRoute route: Route, presentationStyle: RoutePresentationStyle = .push, fromVC: BaseViewController) {
         var destinationVC : UIViewController?
         

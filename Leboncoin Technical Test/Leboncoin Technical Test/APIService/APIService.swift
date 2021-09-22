@@ -35,6 +35,7 @@ struct APIService {
     //-----------------------------------------------------------------------
     // MARK: - Functions
     //-----------------------------------------------------------------------
+    /// Execute an async API call with URLSession
     func execute<T : Codable>(withRequest request: URLRequest, completion: @escaping (Result<T, APIError>) -> Void) {
         //Log it
         Logger.log(message: "Request with url: \(request.httpMethod ?? "NO METHOD") \(request.url?.absoluteString ?? "")", logLevel: .request)
