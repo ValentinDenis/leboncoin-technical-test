@@ -18,11 +18,13 @@
 ## Features
 
 - [x] Single Responsibility architecture
-- [x] No IB, full code interface
+- [x] No IB, full code for interface
 - [x] Swift 5.3.3
 - [x] Github hosted code, git versioning, master main branch
 - [x] No external lib or pods
 - [x] iOS 12+ minimum version
+- [x] Some Unit Tests for Model & Network calls
+- [x] One important UITest
 
 ## Requirements
 
@@ -38,11 +40,11 @@ To build the project, first change the team of the targets (DEV, REC, PROD and t
 #### Launching the app
 
 The app is compatible with simulators (iPads and iPhones). 
-Use the "DEV" target as it is the only one correctly configured
+Use the "DEV" target as it is the only one correctly configured, and that logs things in the console
 
 ## Meta
 
-Valentin Denis – [@Cweposuc](https://twitter.com/cweposuc) – valentindenis80@gmail.com
+Valentin Denis – valentindenis80@gmail.com
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 

@@ -143,7 +143,7 @@ class AdCollectionViewCell: UICollectionViewCell {
         adImageView.contentMode = .scaleAspectFill
         adImageView.translatesAutoresizingMaskIntoConstraints = false
         adImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        adImageView.heightAnchor.constraint(equalToConstant: 130).isActive = true
+        adImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         adImageView.layer.masksToBounds = true
         adImageView.layer.cornerRadius = 8.0
         imageViewStackView.addArrangedSubview(adImageView)

@@ -16,6 +16,7 @@ class ListViewController: BaseViewController {
     private let loaderView = UIActivityIndicatorView()
     private let refreshControl = UIRefreshControl()
     private let searchBar = UISearchBar()
+    private var countLabel = UILabel()
     
     //Filter
     private var filterLabel = UILabel()
@@ -26,7 +27,11 @@ class ListViewController: BaseViewController {
     // MARK: - Properties
     //-----------------------------------------------------------------------
     private var dataSource: [Ad] = []
-    private var filteredDataSource: [Ad] = []
+    private var filteredDataSource: [Ad] = [] {
+        didSet {
+            updateCount()
+        }
+    }
     private var originalFilteredDataSourceBeforeSearch: [Ad] = []
     private var categories: [Category] = []
     private var pickedCategory: Category = Category.defaultCategory()
@@ -186,6 +191,9 @@ class ListViewController: BaseViewController {
         //Setup the search bar
         setupSearchBar()
         
+        //Setup the count label
+        setupCount()
+        
         //Setup the collectionview
         setupCollectionView()
     }
@@ -198,7 +206,7 @@ class ListViewController: BaseViewController {
         //Layout
         view.addSubview(adCollectionView)
         adCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        adCollectionView.topAnchor.constraint(equalTo:searchBar.bottomAnchor, constant: 0).isActive = true
+        adCollectionView.topAnchor.constraint(equalTo:countLabel.bottomAnchor, constant: 16).isActive = true
         adCollectionView.leftAnchor.constraint(equalTo:view.safeAreaLayoutGuide.leftAnchor).isActive = true
         adCollectionView.rightAnchor.constraint(equalTo:view.safeAreaLayoutGuide.rightAnchor).isActive = true
         adCollectionView.bottomAnchor.constraint(equalTo:view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -215,6 +223,9 @@ class ListViewController: BaseViewController {
         refreshControl.tintColor = Constants.Colors.orangeLBC
         refreshControl.addTarget(self, action: #selector(fetchData), for: .valueChanged)
         adCollectionView.refreshControl = refreshControl
+        
+        //Default hidden
+        adCollectionView.alpha = 0.0
     }
     
     /// Setup the loader in the center
@@ -272,6 +283,30 @@ class ListViewController: BaseViewController {
         
         //Delegates
         searchBar.delegate = self
+        
+        //Default hidden
+        searchBar.alpha = 0.0
+    }
+    
+    private func setupCount() {
+        //Layout
+        view.addSubview(countLabel)
+        countLabel.translatesAutoresizingMaskIntoConstraints = false
+        countLabel.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 16).isActive = true
+        countLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16).isActive = true
+        countLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 16).isActive = true
+        
+        //Config
+        countLabel.font = Constants.Font.OpenSans.semiBoldItalic.font(withSize: 18)
+        countLabel.textColor = Constants.Colors.blackLBC
+        
+        //Default hidden
+        countLabel.alpha = 0.0
+    }
+    
+    /// Update the count label
+    private func updateCount() {
+        countLabel.text = "\(filteredDataSource.count) annonce(s)"
     }
     
     /// The nav bar button for filter has been pressed
@@ -282,20 +317,25 @@ class ListViewController: BaseViewController {
     /// Show the loader in the center
     private func showLoader() {
         //Hide the CV and show the loader
+        loaderView.startAnimating()
         UIView.animate(withDuration: 0.3) {[weak self] in
             guard let self = self else { return }
             self.loaderView.alpha = 1.0
             self.adCollectionView.alpha = 0.0
+            self.searchBar.alpha = 0.0
+            self.countLabel.alpha = 0.0
         }
     }
     
     /// Hide the loader in the center
     private func hideLoader() {
         //Hide the loader and show the CV
+        loaderView.stopAnimating()
         UIView.animate(withDuration: 0.3) {[weak self] in
             guard let self = self else { return }
-            self.loaderView.alpha = 0.0
             self.adCollectionView.alpha = 1.0
+            self.searchBar.alpha = 1.0
+            self.countLabel.alpha = 1.0
         }
     }
     
@@ -349,7 +389,7 @@ extension ListViewController: UICollectionViewDataSource, UICollectionViewDelega
 extension ListViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 32, left: 16, bottom: 32, right: 16)
+        return UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
