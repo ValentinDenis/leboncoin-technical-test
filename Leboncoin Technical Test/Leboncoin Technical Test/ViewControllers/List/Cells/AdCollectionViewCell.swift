@@ -53,7 +53,7 @@ class AdCollectionViewCell: UICollectionViewCell {
         
         //Category
         if let cat = category {
-            categoryLabel.text = "Catégorie: \(cat.name)"
+            categoryLabel.text = cat.name
         }else {
             categoryLabel.isHidden = true
         }
@@ -85,9 +85,7 @@ class AdCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpSubViews() {
-        //Corner and shadow
-        contentView.layer.cornerRadius = 8.0
-        contentView.layer.borderWidth = 1.0
+        //Shadow
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.masksToBounds = true
         layer.shadowColor = UIColor.lightGray.cgColor
@@ -138,15 +136,7 @@ class AdCollectionViewCell: UICollectionViewCell {
         let topImageSpacer = UIView()
         topImageSpacer.translatesAutoresizingMaskIntoConstraints = false
         imageViewStackView.addArrangedSubview(topImageSpacer)
-        //Urgent Label
-        urgentLabel.numberOfLines = 1
-        urgentLabel.text = "Urgente !"
-        urgentLabel.textAlignment = .center
-        urgentLabel.textColor = .red
-        urgentLabel.font = Constants.Font.OpenSans.bold.font(withSize: 14)
-        urgentLabel.translatesAutoresizingMaskIntoConstraints = false
-        urgentLabel.heightAnchor.constraint(equalToConstant: 16).isActive = true
-        imageViewStackView.addArrangedSubview(urgentLabel)
+        
         //ImageView itself
         adImageView.contentMode = .scaleAspectFill
         adImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -155,6 +145,20 @@ class AdCollectionViewCell: UICollectionViewCell {
         adImageView.layer.masksToBounds = true
         adImageView.layer.cornerRadius = 8.0
         imageViewStackView.addArrangedSubview(adImageView)
+        
+        //Urgent Label
+        urgentLabel.numberOfLines = 1
+        urgentLabel.text = "Urgent"
+        urgentLabel.textAlignment = .center
+        urgentLabel.backgroundColor = Constants.Colors.orangeLBC
+        urgentLabel.textColor = .white
+        urgentLabel.layer.cornerRadius = 10.0
+        urgentLabel.layer.masksToBounds = true
+        urgentLabel.font = Constants.Font.OpenSans.bold.font(withSize: 13)
+        urgentLabel.translatesAutoresizingMaskIntoConstraints = false
+        urgentLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        imageViewStackView.addArrangedSubview(urgentLabel)
+        
         //Image View Stack Bottom Spacer
         let bottomImageSpacer = UIView()
         bottomImageSpacer.translatesAutoresizingMaskIntoConstraints = false

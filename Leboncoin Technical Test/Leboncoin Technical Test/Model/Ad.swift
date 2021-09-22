@@ -69,7 +69,7 @@ extension Ad {
     func dateFormat() -> String {
         guard let creationDateAsDate = creationDateAsDate() else { return "" }
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE MMM d yyyy à hh:mm"
+        dateFormatter.dateFormat = "EEEE d MMM yyyy à hh:mm"
         dateFormatter.locale = Locale(identifier: "fr")
         let dateString = dateFormatter.string(from: creationDateAsDate)
         return dateString.capitalized

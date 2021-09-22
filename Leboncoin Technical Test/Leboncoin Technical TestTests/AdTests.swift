@@ -26,7 +26,7 @@ class AdTests: XCTestCase {
         let dateFormat = sut.dateFormat()
 
         //Then
-        XCTAssertEqual(dateFormat, "Mardi Sept. 21 2021 À 06:03")
+        XCTAssertEqual(dateFormat, "Mardi 21 Sept. 2021 À 06:03")
     }
     
     func testFormattedPrice() {

@@ -16,6 +16,7 @@ class DetailViewController: BaseViewController {
     private var contentView = UIStackView()
     private var innerContentView = UIStackView()
     private var adImageView = UIImageView()
+    private var urgentLabel = UILabel()
     private var titleLabel = UILabel()
     private var priceLabel = UILabel()
     private var descLabel = UILabel()
@@ -87,6 +88,8 @@ class DetailViewController: BaseViewController {
         adImageView.contentMode = .scaleAspectFit
         adImageView.backgroundColor = .black
         adImageView.layer.masksToBounds = true
+        adImageView.isUserInteractionEnabled = true
+        adImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapImageView)))
         if let urlString = ad.imagesUrl.thumb, let url = URL(string: urlString) {
             adImageView.load(url: url)
         }else {
@@ -104,7 +107,7 @@ class DetailViewController: BaseViewController {
         rightSpacer.widthAnchor.constraint(equalToConstant: 16).isActive = true
         let innerVerticalContentStackView = UIStackView()
         innerVerticalContentStackView.axis = .vertical
-        innerVerticalContentStackView.spacing = 16.0
+        innerVerticalContentStackView.spacing = 12.0
         horizontalSpacerStackView.addArrangedSubview(leftSpacer)
         horizontalSpacerStackView.addArrangedSubview(innerVerticalContentStackView)
         horizontalSpacerStackView.addArrangedSubview(rightSpacer)
@@ -131,6 +134,28 @@ class DetailViewController: BaseViewController {
         categoryLabel.text = "\(category.name)"
         categoryLabel.textAlignment = .right
 
+        //Urgent
+        if ad.isUrgent {
+            let urgentStackView = UIStackView()
+            urgentStackView.axis = .horizontal
+            urgentStackView.spacing = 16
+            urgentLabel.numberOfLines = 1
+            urgentLabel.text = "Urgent"
+            urgentLabel.textAlignment = .center
+            urgentLabel.backgroundColor = Constants.Colors.orangeLBC
+            urgentLabel.textColor = .white
+            urgentLabel.layer.cornerRadius = 12.0
+            urgentLabel.layer.masksToBounds = true
+            urgentLabel.font = Constants.Font.OpenSans.bold.font(withSize: 13)
+            urgentLabel.translatesAutoresizingMaskIntoConstraints = false
+            urgentLabel.heightAnchor.constraint(equalToConstant: 24).isActive = true
+            urgentLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
+            urgentStackView.addArrangedSubview(urgentLabel)
+            let urgentSpacer = UIView()
+            urgentStackView.addArrangedSubview(urgentSpacer)
+            innerVerticalContentStackView.addArrangedSubview(urgentStackView)
+        }
+        
         //Title
         innerVerticalContentStackView.addArrangedSubview(titleLabel)
         titleLabel.numberOfLines = 0
@@ -197,9 +222,16 @@ class DetailViewController: BaseViewController {
         innerVerticalContentStackView.addArrangedSubview(bottomFillerView)
     }
     
+    /// Did tap the contact button
     @objc private func didTapContact() {
         let alert = UIAlertController(title: "Pas tout de suite !", message: "Peut-être dans une prochaine version 😀", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Avec plaisir !", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    /// Did tap the image View
+    @objc private func didTapImageView() {
+        guard let image = adImageView.image else { return }
+        Router.navigate(toRoute: .zoom(image: image), presentationStyle: .push, fromVC: self)
     }
 }

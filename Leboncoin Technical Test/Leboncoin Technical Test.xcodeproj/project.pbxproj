@@ -33,6 +33,9 @@
 		359FD69E26FA4B4E006B2414 /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69D26FA4B4E006B2414 /* ConfigTests.swift */; };
 		359FD6A026FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD69F26FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift */; };
 		359FD6A626FA50B0006B2414 /* AdCollectionViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359FD6A526FA50B0006B2414 /* AdCollectionViewCellTests.swift */; };
+		35A937E426FAA5720017530D /* ZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A937E326FAA5720017530D /* ZoomViewController.swift */; };
+		35A937E526FAA5720017530D /* ZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A937E326FAA5720017530D /* ZoomViewController.swift */; };
+		35A937E626FAA5720017530D /* ZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A937E326FAA5720017530D /* ZoomViewController.swift */; };
 		35B6DBD926FA7F1900DAFBD5 /* LaunchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6DBD826FA7F1900DAFBD5 /* LaunchUITests.swift */; };
 		35B6DBDC26FA828000DAFBD5 /* UITestsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6DBDB26FA828000DAFBD5 /* UITestsExtensions.swift */; };
 		35B6DBDE26FA84FF00DAFBD5 /* ListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B6DBDD26FA84FF00DAFBD5 /* ListUITests.swift */; };
@@ -185,6 +188,7 @@
 		359FD69D26FA4B4E006B2414 /* ConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
 		359FD69F26FA4C6F006B2414 /* CategoryPickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewControllerTests.swift; sourceTree = "<group>"; };
 		359FD6A526FA50B0006B2414 /* AdCollectionViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCollectionViewCellTests.swift; sourceTree = "<group>"; };
+		35A937E326FAA5720017530D /* ZoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomViewController.swift; sourceTree = "<group>"; };
 		35B6DBD826FA7F1900DAFBD5 /* LaunchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchUITests.swift; sourceTree = "<group>"; };
 		35B6DBDB26FA828000DAFBD5 /* UITestsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestsExtensions.swift; sourceTree = "<group>"; };
 		35B6DBDD26FA84FF00DAFBD5 /* ListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListUITests.swift; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				35EA315726F89D760071CEA4 /* DetailViewController.swift */,
+				35A937E326FAA5720017530D /* ZoomViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -723,6 +728,7 @@
 				35EA31C526F8DD5B0071CEA4 /* UIImageView+Extensions.swift in Sources */,
 				35EA315026F89D530071CEA4 /* LaunchViewController.swift in Sources */,
 				359FD68C26FA2335006B2414 /* CategoryTableViewCell.swift in Sources */,
+				35A937E426FAA5720017530D /* ZoomViewController.swift in Sources */,
 				35EA318926F8A8F70071CEA4 /* Logger.swift in Sources */,
 				35EA318F26F8AE5F0071CEA4 /* AdCollectionViewCell.swift in Sources */,
 				35EA317626F8A1CF0071CEA4 /* APIService.swift in Sources */,
@@ -788,6 +794,7 @@
 				35EA31C626F8DD5B0071CEA4 /* UIImageView+Extensions.swift in Sources */,
 				35EA315126F89D530071CEA4 /* LaunchViewController.swift in Sources */,
 				359FD68D26FA2335006B2414 /* CategoryTableViewCell.swift in Sources */,
+				35A937E526FAA5720017530D /* ZoomViewController.swift in Sources */,
 				35EA318A26F8A8F70071CEA4 /* Logger.swift in Sources */,
 				35EA319026F8AE5F0071CEA4 /* AdCollectionViewCell.swift in Sources */,
 				35EA317726F8A1CF0071CEA4 /* APIService.swift in Sources */,
@@ -815,6 +822,7 @@
 				35EA31C726F8DD5B0071CEA4 /* UIImageView+Extensions.swift in Sources */,
 				35EA315226F89D530071CEA4 /* LaunchViewController.swift in Sources */,
 				359FD68E26FA2335006B2414 /* CategoryTableViewCell.swift in Sources */,
+				35A937E626FAA5720017530D /* ZoomViewController.swift in Sources */,
 				35EA318B26F8A8F70071CEA4 /* Logger.swift in Sources */,
 				35EA319126F8AE5F0071CEA4 /* AdCollectionViewCell.swift in Sources */,
 				35EA317826F8A1CF0071CEA4 /* APIService.swift in Sources */,

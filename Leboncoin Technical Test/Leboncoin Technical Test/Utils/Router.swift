@@ -12,6 +12,7 @@ enum Route {
     case listing
     case detail(ad: Ad, category: Category)
     case categoryPicker(categories: [Category], pickedCategory: Category, delegate: CategoryPickerDelegate?)
+    case zoom(image: UIImage)
 }
 
 enum RoutePresentationStyle {
@@ -36,6 +37,9 @@ struct Router {
             (destinationVC as? CategoryPickerViewController)?.categoryDataSource = categories
             (destinationVC as? CategoryPickerViewController)?.alreadyPickedCategory = pickedCategory
             (destinationVC as? CategoryPickerViewController)?.delegate = delegate
+        case .zoom(let image):
+            destinationVC = ZoomViewController()
+            (destinationVC as? ZoomViewController)?.image = image
         }
         
         guard let destinationVC = destinationVC else { return }
