@@ -123,7 +123,7 @@ class ListViewController: BaseViewController {
         taskGroup.notify(queue: .main) {[weak self] in
             guard let self = self else { return }
             self.hideLoader()
-            self.adCollectionView.reloadData()
+            self.didPickCategory(category: self.pickedCategory)
         }
     }
     
