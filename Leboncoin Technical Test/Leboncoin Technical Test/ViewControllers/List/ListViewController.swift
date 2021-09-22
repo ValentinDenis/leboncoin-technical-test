@@ -30,6 +30,7 @@ class ListViewController: BaseViewController {
     private var originalFilteredDataSourceBeforeSearch: [Ad] = []
     private var categories: [Category] = []
     private var pickedCategory: Category = Category.defaultCategory()
+    private var isAlreadyPresentingAlert = false
     
     lazy var compactLayout: UICollectionViewFlowLayout = {
         //Cell Size
@@ -165,10 +166,17 @@ class ListViewController: BaseViewController {
     /// Shows an alert with the error localized description
     /// - Parameter error: The APIError received
     private func showErrorAlert(withError error: APIError) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Erreur", message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else { return }
+            if !self.isAlreadyPresentingAlert {
+                let alert = UIAlertController(title: "Erreur", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {[weak self] action in
+                    guard let self = self else { return }
+                    self.isAlreadyPresentingAlert = false
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
         }
         
     }
@@ -226,6 +234,8 @@ class ListViewController: BaseViewController {
         filterLabel.textAlignment = .right
         filterLabel.font = Constants.Font.OpenSans.semiBold.font(withSize: 14)
         filterLabel.textColor = Constants.Colors.orangeLBC
+        filterLabel.minimumScaleFactor = 0.5
+        filterLabel.numberOfLines = 2
         
         filterButton = UIButton(type: .custom)
         filterButton.addTarget(self, action: #selector(filterPressed), for: .touchUpInside)

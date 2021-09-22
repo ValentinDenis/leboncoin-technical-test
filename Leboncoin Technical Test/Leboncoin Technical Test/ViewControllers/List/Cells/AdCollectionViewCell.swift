@@ -75,6 +75,7 @@ class AdCollectionViewCell: UICollectionViewCell {
     //-----------------------------------------------------------------------
     // MARK: - Private Functions
     //-----------------------------------------------------------------------
+    /// Reset the cell when reused
     private func resetCell() {
         titleLabel.text = nil
         categoryLabel.text = nil
@@ -84,6 +85,7 @@ class AdCollectionViewCell: UICollectionViewCell {
         adImageView.image = nil
     }
     
+    /// Setup the subviews for the cell
     private func setUpSubViews() {
         //Shadow
         contentView.layer.borderColor = UIColor.clear.cgColor
